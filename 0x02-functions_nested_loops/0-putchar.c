@@ -1,10 +1,10 @@
 #include "main.h";
 
 /** main print _putchar
- * Returen :0
+ * Returen : 0
  */
 
-int main (void)
+int main(void)
 {
 
 	_putchar('_');
