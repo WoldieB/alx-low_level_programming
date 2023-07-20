@@ -1,13 +1,13 @@
 #include "main.h"
 
 /**
- * print_most_numbers - prints numbers except 2 and 
+ * print_most_numbers - prints numbers except 2 and
  * Return: returns nothing
  */
 void print_most_numbers(void)
 {
 	int number;
-
+	
 	for (number = 48; number < 58; number++)
 	{
 		if ((number == 50) || (number == 52))
