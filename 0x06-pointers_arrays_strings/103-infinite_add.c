@@ -1,59 +1,53 @@
 #include "main.h"
-#include <stdio.h>
 /**
- * infinite_add - add 2 strings.
- * @n1: string1.
- * @n2: string2.
- * @r: buffer
- * @size_r: buffer size
- * Return: String with all letters in ROT13 base.
+ * infinite_add -  adds two numbers
+ * @n1: first number
+ * @n2: second number
+ * @r: result
+ * @size_r: result lenght
+ * Return: sum
+ *
  */
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
+
 {
-	int a_len = 0, b_len = 0, carry = 0, a, b, sum, biggest;
-	
-	while (n1[a_len] != '\0')
-		a_len++;
-	while (n2[b_len] != '\0')
-		b_len++;
-	if (a_len > b_len)
-		biggest = a_len;
+	/* local variable declaration */
+	int i = 0, j = 0, k, l = 0, f, s, d = 0;
+
+	while (n1[i] != '\0')
+		i++;
+	while (n2[j] != '\0')
+		j++;
+	if (i > j)
+		l = i;
 	else
-		biggest = b_len;
-	if ((biggest + 1) >= size_r)
+		l = j;
+	if (l + 1 > size_r)
 		return (0);
-	r[biggest + 1] = '\0';
-	
-	while (biggest >= 0)
+	r[l] = '\0';
+	for (k = l - 1 ; k >= 0 ; k--)
 	{
-		a = (n1[a_len - 1] - '0');
-		b = (n1[b_len - 1] - '0');
-		if (a_len > 0 && b_len > 0)
-			sum = a + b + carry;
-		else if (a_len < 0 && b_len > 0)
-			sum = b + carry;
-		else if (a_len > 0 && b_len < 0)
-			sum = a + carry;
+		i--;
+		j--;
+		if (i >= 0)
+			f = n1[i] - '0';
 		else
-			sum = carry;
-		
-		if (sum > 9)
-		{
-			carry = sum / 10;
-			sum = (sum % 10) + '0';
-		}
+			f = 0;
+		if (j >= 0)
+			s = n2[j] - '0';
 		else
-		{
-			carry = 0;
-			sum = sum + '0';
-		}
-		r[biggest] = sum;
-		a_len--;
-		b_len--;
-		biggest--;
+			s = 0;
+		r[k] = (f + s + d) % 10 + '0';
+		d = (f + s + d) / 10;
 	}
-	if (*(r) != 0)
-		return (r);
-	else
-		return (r + 1);
+	if (d == 1)
+	{
+		r[l + 1] = '\0';
+		if (l + 2 > size_r)
+			return (0);
+		while (l-- >= 0)
+			r[l + 1] = r[l];
+		r[0] = d + '0';
+	}
+	return (r);
 }
