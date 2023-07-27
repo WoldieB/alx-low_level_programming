@@ -1,29 +1,36 @@
 #include "main.h"
 
 /**
- * rot13 - change letters to ROT13.
- * @s: analized string.
+ *rot13 - encodes strings using rot13.
+ *@s: pointer to string.
  *
- * Return: String with all letters in ROT13 base.
+ *Return: pointer to encoded string.
  */
 char *rot13(char *s)
 {
-	char a[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	char rot[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
-	int i = 0;
-	int j;
+	int stringCount, rotate;
+	char x[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+		     'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y',
+		     'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
+		     'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y',
+		     'Z'};
 
-	while (*(s + i) != '\0')
+	char y[] = {'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y',
+		     'z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+		     'm', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y',
+		     'Z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
+		     'M'};
+
+	for (stringCount = 0; s[stringCount] != '\0'; stringCount++)
 	{
-		for (j = 0; j <= 51; j++)
+		for (rotate = 0; rotate < 53; rotate++)
 		{
-			if (*(s + i) == a[j])
+			if (x[rotate] == s[stringCount])
 			{
-				*(s + i) = rot[j];
+				s[stringCount] = y[rotate];
 				break;
 			}
 		}
-		i++;
 	}
 	return (s);
 }
