@@ -3,8 +3,9 @@ nclude "main.h"
 /**
  *  print_chessboard - print a chessboard.
  *    @a: source matrix
- *     Return: chessboa
+ *     Return: chessboard
  */
+
 void print_chessboard(char (*a)[8])
 {
 		int i, j;
