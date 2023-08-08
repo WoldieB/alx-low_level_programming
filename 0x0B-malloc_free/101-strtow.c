@@ -11,7 +11,7 @@ char **strtow(char *str)
 {
 	char **split;
 	int i, j = 0, temp = 0, size = 0, words = num_words(str);
-	
+
 	if (words == 0)
 		return (NULL);
 	split = (char **) malloc(sizeof(char *) * (words + 1));
@@ -28,7 +28,7 @@ char **strtow(char *str)
 				{
 					while (temp < size)
 					{
-						split[j][temp] = str[(i - size) +temp];
+						split[j][temp] = str[(i - size) + temp];
 						temp++;
 					}
 					split[j][temp] = '\0';
@@ -61,7 +61,7 @@ char **strtow(char *str)
 int num_words(char *str)
 {
 	int i = 0, words = 0;
-	
+
 	while (i <= len(str))
 	{
 		if ((str[i] != ' ') && (str[i] != '\0'))
@@ -91,7 +91,7 @@ int num_words(char *str)
 int len(char *str)
 {
 	int len = 0;
-	
+
 	if (str != NULL)
 	{
 		while (str[len])
