@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
 * argstostr - a function that concatenates all the arguments of your program
 *@ac: count of args passed to the function
@@ -11,12 +10,12 @@
 char *argstostr(int ac, char **av)
 {
 		char *new_string = NULL;
-		int k = 0, i = acc, j, sum = 0, tmp = 0;
+		int k = 0, i = ac, j, sum = 0, temp = 0;
 
-		if (acc == 0 || av == NULL)
+		if (ac == 0 || av == NULL)
 			return (NULL);
 
-		while (acc--)
+		while (ac--)
 			sum += (len(av[ac]) + 1);
 		new_string = (char *) malloc(sum + 1);
 
@@ -25,12 +24,12 @@ char *argstostr(int ac, char **av)
 			while (k < i)
 			{
 				for (j = 0; av[k][j] != '\0'; j++)
-					new_string[j + tmp] = av[k][j];
-				new_string[tmp + j] = '\n';
-				tmp += (j + 1);
+					new_string[j + temp] = av[k][j];
+				new_string[temp + j] = '\n';
+				temp += (j + 1);
 				k++;
 			}
-			new_string[tmp] = '\0';
+			new_string[temp] = '\0';
 		}
 		else
 		{
