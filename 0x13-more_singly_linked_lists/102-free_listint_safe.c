@@ -1,4 +1,5 @@
 #include "lists.h"
+#include <stdlib.h>
 
 /**
  * free_listint_safe - frees a linked list
@@ -34,4 +35,4 @@ size_t free_listint_safe(listint_t **h)
 	}
 
 	*h = NULL;
-
+}
