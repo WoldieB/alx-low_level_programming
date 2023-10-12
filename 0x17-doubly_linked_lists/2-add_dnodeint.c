@@ -9,29 +9,21 @@
  * Return: If the function fails - NULL.
  *         Otherwise - the address of the new node.
  */
-dlistint_t *add_dnodeint_end(dlistint_t **head, const int n)
+
+dlistint_t *add_dnodeint(dlistint_t **head, const int n)
 {
-	dlistint_t *new, *last;
+	dlistint_t *new;
 
 	new = malloc(sizeof(dlistint_t));
 	if (new == NULL)
 		return (NULL);
 
 	new->n = n;
-	new->next = NULL;
-
-	if (*head == NULL)
-	{
-		new->prev = NULL;
-		*head = new;
-		return (new);
-	}
-
-	last = *head;
-	while (last->next != NULL)
-		last = last->next;
-	last->next = new;
-	new->prev = last;
+	new->prev = NULL;
+	new->next = *head;
+	if (*head != NULL)
+		(*head)->prev = new;
+	*head = new;
 
 	return (new);
 }
