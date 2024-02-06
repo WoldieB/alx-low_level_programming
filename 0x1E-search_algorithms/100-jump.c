@@ -1,36 +1,41 @@
 #include "search_algos.h"
 
-/**
- * jump_search - function that searches for a value
- * in a sorted array of integers
- * @array: a pointer to the first element of the array to search in
- * @size:  the number of elements in array
- * @value: is the value to search for
- * Return: the first index where value is located
- */
+#define PRINT_CHECKED(idx, item) \
+	printf("Value checked array[%lu] = [%d]\n", (idx), (item))
 
+#define PRINT_BOUNDED(low, high) \
+	printf("Value found between indexes [%lu] and [%lu]\n", (low), (high))
+
+/**
+ * jump_search - search for a value in a sorted array of integers
+ * @array: the array of values
+ * @size: the number of values
+ * @value: the value to locate
+ *
+ * Return: If value is not present in array or array is NULL, return -1.
+ * Otherwise, returh the first index where value is located.
+ */
 int jump_search(int *array, size_t size, int value)
 {
-	size_t i, step, jump;
+	size_t i = 0, j = 0;
 
-	if (array == NULL || size == 0)
-		return (-1);
-
-	step = sqrt(size);
-
-	for (i = jump = 0; jump < size && array[jump] < value;)
+	if (array && size)
 	{
-		printf("Value checked array [%ld] = [%d]\n", jump, array[jump]);
-		i = jump;
-		jump += step;
+		while (j < size && array[j] < value)
+		{
+			PRINT_CHECKED(j, array[j]);
+			i = j, j += 3;
+		}
+		PRINT_BOUNDED(i, j);
+		if (size <= j)
+			j = size - 1;
+		while (i <= j)
+		{
+			PRINT_CHECKED(i, array[i]);
+			if (array[i] == value)
+				return (i);
+			++i;
+		}
 	}
-
-	printf("Value found between indexes [%ld] and [%ld]\n", i, jump);
-
-	jump = jump > size - 1 ? jump : size - 1;
-	for (; i < jump && array[i] < value; i++)
-		printf("Value checked array [%ld] = [%d]\n", i, array[i]);
-	printf("Value checked array [%ld] = [%d]\n", i, array[i]);
-
-	return (array[i] == value ? (int)i : -1);
+	return (-1);
 }
